@@ -1,4 +1,4 @@
-pusing System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +20,14 @@ namespace tic_tac__toe
             int currentPlayer = -1;
             char[] marker = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
             HadsupDisplay(currentPlayer);
+
             do
             {
-            
+                
+              
                 currentPlayer = GetTheNextPlayer(currentPlayer);
-             
+
+                next(currentPlayer);
                 board(marker);
 
                 GameEngine(marker, currentPlayer);
@@ -63,28 +66,56 @@ namespace tic_tac__toe
 
         static void HadsupDisplay(int playerNumber)
         {
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine("welcome to the super duper tic tac toe game ");
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("enter your names");
-            Console.WriteLine();
-         
-            Console.WriteLine("player1:");
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
-            player1 = Console.ReadLine();
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("player2:");
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            player2 = Console.ReadLine();
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("start");
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine($"player{playerNumber} to move , select 1 through from the game board");
-            Console.WriteLine();
+           
+            
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("welcome to the super duper tic tac toe game ");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("enter your names");
+                Console.WriteLine();
+
+                Console.WriteLine("player1:");
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                player1 = Console.ReadLine();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("player2:");
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                player2 = Console.ReadLine();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("start");
+
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+            
+            
+                
+                Console.WriteLine($"player{playerNumber} to move , select 1 through from the game board");
+                Console.WriteLine();
         }
+        static void next(int playernumber)
+
+        {
+            for (int i = 0; i <= 2; i++)
+            {
+                if (playernumber != 1)
+
+
+
+                {
+                    i = playernumber;
+                    Console.WriteLine($"player {playernumber} to move , select 1 through from the game board");
+                    break;
+                }
+
+            }
+
+        }
+           
+
         static int GetTheNextPlayer(int player)
         {
+           
             if (player.Equals(1))
+             
 
             {
                 return 2;
@@ -123,6 +154,9 @@ namespace tic_tac__toe
                         currentMarker == 'o')
                     {
                         Console.WriteLine("the placment has already a marker please select another placement ");
+                        board(marker);
+
+
                     }
                     else if (currentMarker != 'x' || currentMarker != 'o')
                     {
@@ -134,6 +168,7 @@ namespace tic_tac__toe
                     else
                     {
                         Console.WriteLine("ivalid value please select another placement");
+                        board(marker);
                     }
 
                 }
