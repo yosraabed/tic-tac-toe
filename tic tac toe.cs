@@ -70,7 +70,7 @@ namespace tic_tac__toe
             Console.WriteLine();
          
             Console.WriteLine("player1:");
-            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             player1 = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("player2:");
