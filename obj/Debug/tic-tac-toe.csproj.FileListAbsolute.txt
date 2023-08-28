@@ -1,0 +1,7 @@
+C:\yosra\tic-tac-toe\bin\Debug\tic-tac-toe.exe.config
+C:\yosra\tic-tac-toe\bin\Debug\tic-tac-toe.exe
+C:\yosra\tic-tac-toe\bin\Debug\tic-tac-toe.pdb
+C:\yosra\tic-tac-toe\obj\Debug\tic-tac-toe.csproj.AssemblyReference.cache
+C:\yosra\tic-tac-toe\obj\Debug\tic-tac-toe.csproj.CoreCompileInputs.cache
+C:\yosra\tic-tac-toe\obj\Debug\tic-tac-toe.exe
+C:\yosra\tic-tac-toe\obj\Debug\tic-tac-toe.pdb
