@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,10 @@ namespace tic_tac__toe
         public static string player1;
         public static string player2;
         public static int player;
-      
+
+
         static void Main(string[] args)
         {
-          
             int gameStatus = 0;
             int currentPlayer = -1;
             char[] marker = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
@@ -23,33 +24,110 @@ namespace tic_tac__toe
 
             do
             {
-                
-              
+
+
                 currentPlayer = GetTheNextPlayer(currentPlayer);
 
                 next(currentPlayer);
                 board(marker);
 
                 GameEngine(marker, currentPlayer);
-                gameStatus = checkWinner(marker);
+                gameStatus = checkWinner(marker, currentPlayer);
 
             } while (gameStatus.Equals(0));
 
-
+            if (gameStatus.Equals(1))
+            {
+                board(marker);
+                Console.WriteLine($"the player {currentPlayer}is the winner!!");
+                Console.ReadLine();
+            }
+            if (gameStatus.Equals(2))
+            {
+                Console.WriteLine($"the game is a draw ! ");
+                Console.ReadLine();
+            }
 
         }
-        private static int checkWinner(char[] marker)
-        { if (marker[0].Equals(marker[1]) && marker[1].Equals(marker[2])||
-            (marker[0].Equals(marker[3]) && marker[1].Equals(marker[6])||
-            (marker[0].Equals(marker[4]) && marker[4].Equals(marker[8]))))
-            
+        private static int checkWinner(char[] marker, int currentPlayer)
+        {
+            if (IsGameDraw(marker))
             {
-                Console.WriteLine( $" player {player} win!!");
+                return 2;
+            }
+            if (IsGameWinner(marker))
+
+            {
+
+                return 1;
 
             }
             return 0;
         }
-        public static void board(char[] marker)
+        private static bool IsGameDraw(char[] marker)
+        {
+            return marker[0] != '1' &&
+                marker[1] != '2' &&
+               marker[2] != '3' &&
+               marker[3] != '4' &&
+                marker[4] != '5' &&
+                marker[5] != '6' &&
+                marker[6] != '7' &&
+                marker[7] != '8' &&
+                marker[8] != '9';
+        }
+        private static bool IsGameWinner(char[] marker)
+        {
+            if (samemarker(marker, 0, 1, 2))
+            {
+                return true;
+            }
+            if (samemarker(marker, 3, 4, 5))
+            {
+                return true;
+            }
+
+            if (samemarker(marker, 0, 3, 6))
+            {
+                return true;
+            }
+
+            if (samemarker(marker, 2, 5, 8))
+            {
+                return true;
+            }
+
+
+            if (samemarker(marker, 1, 4, 7))
+            {
+                return true;
+            }
+
+            if (samemarker(marker, 2, 5, 8))
+            {
+                return true;
+            }
+
+            if (samemarker(marker, 0, 4, 8))
+            {
+                return true;
+            }
+
+            if (samemarker(marker, 2, 4, 6))
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+
+
+        private static bool samemarker(char[] testmarker, int pos1, int pos2, int pos3)
+        {
+            return testmarker[pos1].Equals(testmarker[pos2]) && testmarker[pos2].Equals(testmarker[pos3]);
+        }
+        static void board(char[] marker)
         {
 
             Console.ForegroundColor = ConsoleColor.White;
@@ -71,56 +149,55 @@ namespace tic_tac__toe
 
         static void HadsupDisplay(int playerNumber)
         {
-           
-            
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
-                Console.WriteLine("welcome to the super duper tic tac toe game ");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("enter your names");
-                Console.WriteLine();
 
-                Console.WriteLine("player1:");
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-                player1 = Console.ReadLine();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("player2:");
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-                player2 = Console.ReadLine();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("start");
 
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
-            
-            
-                
-                Console.WriteLine($"player{playerNumber} to move , select 1 through from the game board");
-                Console.WriteLine();
+            string player1;
+            string player2;
+
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("welcome to the super duper tic tac toe game ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("enter your names");
+            Console.WriteLine();
+
+            Console.WriteLine("player1:");
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            player1 = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("player2:");
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            player2 = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("start");
+
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine();
         }
         static void next(int playernumber)
 
         {
             for (int i = 0; i <= 2; i++)
             {
-                if (playernumber != 1)
 
 
 
-                {
-                    i = playernumber;
-                    Console.WriteLine($"player {playernumber} to move , select 1 through from the game board");
-                    break;
-                }
+
+
+                i = playernumber;
+                Console.WriteLine($"player {playernumber} to move , select 1 through from the game board");
+                break;
+
 
             }
 
         }
-           
 
-        static int GetTheNextPlayer(int player)
+
+        private static int GetTheNextPlayer(int player)
         {
-           
+
             if (player.Equals(1))
-             
+
 
             {
                 return 2;
@@ -148,12 +225,12 @@ namespace tic_tac__toe
                        (userInput.Equals("6")) ||
                      (userInput.Equals("7")) ||
                      (userInput.Equals("8")) ||
-                     (userInput.Equals("9"))) 
+                     (userInput.Equals("9")))
 
 
 
                 {
-                    
+
                     int.TryParse(userInput, out var gamePlacementMarker);
                     char currentMarker = marker[gamePlacementMarker - 1];
                     if (currentMarker == 'x' ||
@@ -179,21 +256,22 @@ namespace tic_tac__toe
 
                 }
             } while (validMove);
-            
-           
-       
+
+
+
         }
 
 
-                private static char GetPlayermaeker(int player)
-                {
-                    if (player % 2 == 0)
-                    {
+        private static char GetPlayermaeker(int player)
+        {
+            if (player % 2 == 0)
+            {
 
-                        return 'o';
-                    }
-                    return 'x';
-                }
-            
+                return 'o';
+            }
+            return 'x';
+        }
 
-} }
+
+    }
+}
