@@ -39,8 +39,13 @@ namespace tic_tac__toe
 
         }
         private static int checkWinner(char[] marker)
-        { if (marker[0].Equals(marker[1]) && marker[1].Equals(marker[2]))
-            { return 1;
+        { if (marker[0].Equals(marker[1]) && marker[1].Equals(marker[2])||
+            (marker[0].Equals(marker[3]) && marker[1].Equals(marker[6])||
+            (marker[0].Equals(marker[4]) && marker[4].Equals(marker[8]))))
+            
+            {
+                Console.WriteLine( $" player {player} win!!");
+
             }
             return 0;
         }
@@ -140,6 +145,7 @@ namespace tic_tac__toe
                      (userInput.Equals("3")) ||
                      (userInput.Equals("4")) ||
                      (userInput.Equals("5")) ||
+                       (userInput.Equals("6")) ||
                      (userInput.Equals("7")) ||
                      (userInput.Equals("8")) ||
                      (userInput.Equals("9"))) 
@@ -173,6 +179,9 @@ namespace tic_tac__toe
 
                 }
             } while (validMove);
+            
+           
+       
         }
 
 
@@ -187,4 +196,4 @@ namespace tic_tac__toe
                 }
             
 
-} } 
+} }
