@@ -4,23 +4,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace tic_tac__toe
 {
     internal class Program
     {
-
         public static string player1;
         public static string player2;
+
         public static int player;
 
 
         static void Main(string[] args)
+        
         {
+            string player1;
+            string player2;
             int gameStatus = 0;
             int currentPlayer = -1;
             char[] marker = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            Introduction();
+
+            Console.WriteLine();
+            Console.WriteLine();
             HadsupDisplay(currentPlayer);
+            Console.WriteLine("player1:");
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            player1 = Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("player2:");
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            player2 = Console.ReadLine();
 
             do
             {
@@ -39,15 +54,56 @@ namespace tic_tac__toe
             if (gameStatus.Equals(1))
             {
                 board(marker);
-                Console.WriteLine($"the player {currentPlayer}is the winner!!");
-                Console.ReadLine();
-            }
+
+                if (currentPlayer == 1)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine();
+                    Console.WriteLine($"congratulations " + player1  );
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("    ÛÛÛÛÛ ÛÛÛÛÛ                        ÛÛÛÛÛ   ÛÛÛ   ÛÛÛÛÛ                     ÛÛÛ ÛÛÛ     ");
+                    Console.WriteLine("   °°ÛÛÛ °°ÛÛÛ                        °°ÛÛÛ   °ÛÛÛ  °°ÛÛÛ                     °ÛÛÛ°ÛÛÛ     ");
+                    Console.WriteLine("    °°ÛÛÛ ÛÛÛ    ÛÛÛÛÛÛ  ÛÛÛÛÛ ÛÛÛÛ    °ÛÛÛ   °ÛÛÛ   °ÛÛÛ   ÛÛÛÛÛÛ  ÛÛÛÛÛÛÛÛ  °ÛÛÛ°ÛÛÛ     ");
+                    Console.WriteLine("     °°ÛÛÛÛÛ    ÛÛÛ°°ÛÛÛ°°ÛÛÛ °ÛÛÛ     °ÛÛÛ   °ÛÛÛ   °ÛÛÛ  ÛÛÛ°°ÛÛÛ°°ÛÛÛ°°ÛÛÛ °ÛÛÛ°ÛÛÛ     ");
+                    Console.WriteLine("      °°ÛÛÛ    °ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ     °°ÛÛÛ  ÛÛÛÛÛ  ÛÛÛ  °ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ°ÛÛÛ     ");
+                    Console.WriteLine("       °ÛÛÛ    °ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ      °°°ÛÛÛÛÛ°ÛÛÛÛÛ°   °ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ °°° °°°      ");
+                    Console.WriteLine("       ÛÛÛÛÛ   °°ÛÛÛÛÛÛ  °°ÛÛÛÛÛÛÛÛ       °°ÛÛÛ °°ÛÛÛ     °°ÛÛÛÛÛÛ  ÛÛÛÛ ÛÛÛÛÛ ÛÛÛ ÛÛÛ     ");
+                    Console.WriteLine("       °°°°°     °°°°°°    °°°°°°°°         °°°   °°°       °°°°°°  °°°° °°°°° °°° °°°     ");
+                    Console.ResetColor();
+                    Console.ReadLine();
+                }
+                if (currentPlayer == 2)
+                {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine();
+                    Console.WriteLine($"congratulations " + player2);
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("    ÛÛÛÛÛ ÛÛÛÛÛ                        ÛÛÛÛÛ   ÛÛÛ   ÛÛÛÛÛ                     ÛÛÛ ÛÛÛ     ");
+                    Console.WriteLine("   °°ÛÛÛ °°ÛÛÛ                        °°ÛÛÛ   °ÛÛÛ  °°ÛÛÛ                     °ÛÛÛ°ÛÛÛ     ");
+                    Console.WriteLine("    °°ÛÛÛ ÛÛÛ    ÛÛÛÛÛÛ  ÛÛÛÛÛ ÛÛÛÛ    °ÛÛÛ   °ÛÛÛ   °ÛÛÛ   ÛÛÛÛÛÛ  ÛÛÛÛÛÛÛÛ  °ÛÛÛ°ÛÛÛ     ");
+                    Console.WriteLine("     °°ÛÛÛÛÛ    ÛÛÛ°°ÛÛÛ°°ÛÛÛ °ÛÛÛ     °ÛÛÛ   °ÛÛÛ   °ÛÛÛ  ÛÛÛ°°ÛÛÛ°°ÛÛÛ°°ÛÛÛ °ÛÛÛ°ÛÛÛ     ");
+                    Console.WriteLine("      °°ÛÛÛ    °ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ     °°ÛÛÛ  ÛÛÛÛÛ  ÛÛÛ  °ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ°ÛÛÛ     ");
+                    Console.WriteLine("       °ÛÛÛ    °ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ      °°°ÛÛÛÛÛ°ÛÛÛÛÛ°   °ÛÛÛ °ÛÛÛ °ÛÛÛ °ÛÛÛ °°° °°°      ");
+                    Console.WriteLine("       ÛÛÛÛÛ   °°ÛÛÛÛÛÛ  °°ÛÛÛÛÛÛÛÛ       °°ÛÛÛ °°ÛÛÛ     °°ÛÛÛÛÛÛ  ÛÛÛÛ ÛÛÛÛÛ ÛÛÛ ÛÛÛ     ");
+                    Console.WriteLine("       °°°°°     °°°°°°    °°°°°°°°         °°°   °°°       °°°°°°  °°°° °°°°° °°° °°°     ");
+                    Console.ResetColor();
+                    Console.ReadLine();
+                }  }
             if (gameStatus.Equals(2))
             {
-                Console.WriteLine($"the game is a draw ! ");
+
+                Console.WriteLine("Aw gosh... it's a draw.");
+                                 
+               Console.ReadKey();
+
                 Console.ReadLine();
+                 
+              
             }
 
+           
         }
         private static int checkWinner(char[] marker, int currentPlayer)
         {
@@ -127,24 +183,27 @@ namespace tic_tac__toe
         {
             return testmarker[pos1].Equals(testmarker[pos2]) && testmarker[pos2].Equals(testmarker[pos3]);
         }
-        static void board(char[] marker)
+   public  static void board(char[] marker)
         {
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.BackgroundColor = ConsoleColor.Black;
-            Console.WriteLine($" {marker[0]} | {marker[1]} | {marker[2]} ");
-            Console.WriteLine("---+---+---",
+            Console.WriteLine($"  {marker[0]}  |  {marker[1]}  |  {marker[2]}  ");
+            Console.WriteLine(" ---- + ---- +---- ",
             Console.ForegroundColor = ConsoleColor.Blue);
-            Console.WriteLine($" {marker[3]} | {marker[4]} | {marker[5]} ");
-            Console.WriteLine("---+---+---",
-            Console.ForegroundColor = ConsoleColor.Magenta);
-            Console.WriteLine($" {marker[6]} | {marker[7]} | {marker[8]} ");
+            Console.WriteLine($"  {marker[3]}  |  {marker[4]}  |  {marker[5]} ");
+            Console.WriteLine("---- + ---- + ----",
+            Console.ForegroundColor = ConsoleColor.DarkGreen);
+            Console.WriteLine($"  {marker[6]}  |  {marker[7]}  |  {marker[8]}  ");
             Console.ForegroundColor = ConsoleColor.White;
 
 
 
 
         }
+
+
+
 
 
         static void HadsupDisplay(int playerNumber)
@@ -154,23 +213,18 @@ namespace tic_tac__toe
             string player1;
             string player2;
 
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
-            Console.WriteLine("welcome to the super duper tic tac toe game ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
+            Console.WriteLine("           welcome to the super duper tic tac toe game    ");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("enter your names");
             Console.WriteLine();
 
-            Console.WriteLine("player1:");
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            player1 = Console.ReadLine();
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("player2:");
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            player2 = Console.ReadLine();
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("start");
 
-            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(" START  ");
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine();
         }
         static void next(int playernumber)
@@ -185,6 +239,8 @@ namespace tic_tac__toe
 
                 i = playernumber;
                 Console.WriteLine($"player {playernumber} to move , select 1 through from the game board");
+                Console.WriteLine();
+                Console.WriteLine();
                 break;
 
 
@@ -230,7 +286,6 @@ namespace tic_tac__toe
 
 
                 {
-
                     int.TryParse(userInput, out var gamePlacementMarker);
                     char currentMarker = marker[gamePlacementMarker - 1];
                     if (currentMarker == 'x' ||
@@ -241,19 +296,20 @@ namespace tic_tac__toe
 
 
                     }
-                    else if (currentMarker != 'x' || currentMarker != 'o')
+
+                    else if (currentMarker != 'x' || currentMarker != 'o' && currentMarker > 2)
                     {
                         marker[gamePlacementMarker - 1] = GetPlayermaeker(currentPlayer);
                         validMove = false;
                     }
 
 
-                    else
-                    {
-                        Console.WriteLine("ivalid value please select another placement");
-                        board(marker);
-                    }
 
+                }
+                else
+                {
+                    Console.WriteLine("ivalid value please select another placement");
+                    board(marker);
                 }
             } while (validMove);
 
@@ -271,6 +327,20 @@ namespace tic_tac__toe
             }
             return 'x';
         }
+        public static void Introduction()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("     .-----. _         .-----.             .-----.            ");
+            Console.WriteLine("     `-. .-':_;        `-. .-'             `-. .-'            ");
+            Console.WriteLine("       : :  .-. .--.     : : .--.   .--.     : : .--.  .--.   ");
+            Console.WriteLine("       : :  : :'  ..'    : :' .; ; '  ..'    : :' .; :' '_.'  ");
+            Console.WriteLine("       :_;  :_;`.__.'    :_;`.__,_;`.__.'    :_;`.__.'`.__.'  ");
+            Console.ResetColor();
+
+
+
+        }
+       
 
 
     }
